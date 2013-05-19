@@ -36,23 +36,27 @@ class TikaTool{
 	}
 	
 	private void parseFile() throws IOException{
-		type = tika.detect(file);
-		Tokenizer tokenizer = SimpleTokenizer.INSTANCE;
-		BufferedReader br = new BufferedReader(tika.parse(new FileInputStream(file)));
-		String line;
+		try{
+			type = tika.detect(file);
+			Tokenizer tokenizer = SimpleTokenizer.INSTANCE;
+			BufferedReader br = new BufferedReader(tika.parse(new FileInputStream(file)));
+			String line;
 		
-		while((line = br.readLine()) != null){
-			//add to language profile
-			pw.append(line);
-			//add to string builder
-			fullText.append(line);
-			//tokenize
-			Span[] tokensSpans = tokenizer.tokenizePos(line);
-            String[] tokens = Span.spansToStrings(tokensSpans, line);
+			while((line = br.readLine()) != null){
+				//add to language profile
+				pw.append(line);
+				//add to string builder
+				fullText.append(line);
+				//tokenize
+				Span[] tokensSpans = tokenizer.tokenizePos(line);
+	            String[] tokens = Span.spansToStrings(tokensSpans, line);
 			
-			processEnts(line, tokensSpans, tokens, persNameFinder, nameEnts);
-			processEnts(line, tokensSpans, tokens, orgNameFinder, orgEnts);
-			processEnts(line, tokensSpans, tokens, locNameFinder, locEnts);
+				processEnts(line, tokensSpans, tokens, persNameFinder, nameEnts);
+				processEnts(line, tokensSpans, tokens, orgNameFinder, orgEnts);
+				processEnts(line, tokensSpans, tokens, locNameFinder, locEnts);
+			}
+		}catch(Exception e){
+			System.err.println(e + " " + file.getName());
 		}        
 	}
 	

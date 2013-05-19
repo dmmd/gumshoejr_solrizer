@@ -41,9 +41,12 @@ class IndexParser(val indexLoc : String, val fileLoc : String){
 		for(line <- Source.fromFile(indexLoc).getLines()){
 			line.split("\t")(0) match {
 				case "SERIESINFO" => inventoryState = false
-				case "INVENTORY" => inventoryState = true
-					if(componentInfo("access") == "true")
+				case "INVENTORY" => 
+					inventoryState = true
+					printMap(componentInfo)
+					if(componentInfo("access") == "true"){
 						getAccessMap()
+					}
 				case _ => 
 					if(inventoryState == true){
 						val fp : FileProcessor  = new FileProcessor(line.split("\t"), componentInfo, fileHash, fileLoc, accessMap)
