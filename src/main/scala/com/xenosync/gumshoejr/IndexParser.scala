@@ -25,7 +25,6 @@ class IndexParser(val pack: Package){
 				case "SERIESINFO" => inventoryState = false
 				case "INVENTORY" => 
 					inventoryState = true
-					printMap(componentInfo)
 					if(componentInfo("access") == "true"){
 						getAccessMap()
 					}
