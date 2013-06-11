@@ -1,5 +1,6 @@
 package com.xenosync.gumshoejr
 
+import com.typesafe.config._
 import java.io.File
 import java.io.FileInputStream
 import org.apache.commons.codec.digest.DigestUtils
@@ -9,11 +10,12 @@ import scala.io.Source
 import scala.collection.mutable.HashMap
 
 class IndexParser(val pack: Package){
+	val conf = ConfigFactory.load()
 	var inventoryState = false
 	val componentInfo : HashMap[String, String] = new HashMap[String, String]
 	val fileHash : HashMap[String, String] = new HashMap[String, String]
 	val accessMap : HashMap[String, File] = new HashMap[String, File] 
-	val server : HttpSolrServer = new HttpSolrServer("http://localhost:8983/solr")
+	val server : HttpSolrServer = new HttpSolrServer(conf.getString("gmjr.server"))
 		
 	mapFiles
 	parseInventory
