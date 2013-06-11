@@ -1,0 +1,6 @@
+colId:  M6196
+colName:    The September 11th Fund records
+componentIdentifier:    M6196_ER_0001
+componentTitle: Board of Directors
+parentComponentTitle:   Administrative records
+access: FALSE

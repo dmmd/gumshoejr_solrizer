@@ -1,5 +1,4 @@
 target/*
 project/*
-files/*
 .DS_Store
-Packages/*
+*.iml
