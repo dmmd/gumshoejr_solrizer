@@ -22,7 +22,13 @@ class FileProcessor(fileInfo : String, file: File, config: mutable.HashMap[Strin
   solrDoc.addField("md5", info(6));
   solrDoc.addField("fileId", info(0))
   val tikaTool = new TikaTool(file)
-
+  solrDoc.addField("tikaMime", tikaTool.getType)
+  solrDoc.addField("language", tikaTool.getLang)
+  solrDoc.addField("text", tikaTool.getFullText)
+  System.out.println(tikaTool.getNames().getClass)
+  //for(name <- tikaTool.getNames()){solrDoc.addField("names", name)}
+  //for(org <- tikaTool.getOrgs()){solrDoc.addField("orgs", org)}
+  //for(loc <- tikaTool.getLocs()){solrDoc.addField("locs", loc)}
   println(solrDoc)
 
   def convertDateField(dateString : String) : Date = {
