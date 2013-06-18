@@ -7,7 +7,6 @@ import scala.io.Source
 
 class GumshoePackage(packageLoc: String) {
   val files: File = new File(packageLoc)
-  val isValid = checkValid
   var indexFile: File = null
   var parserFiles: File = null
   val configMap = new mutable.HashMap[String, String]()
@@ -25,7 +24,19 @@ class GumshoePackage(packageLoc: String) {
     }
   }
 
-  def checkValid() : Boolean = {
+  private def checkValid() : Boolean = {
     if(indexFile != null && parserFiles != null) true else false
   }
+
+  override def toString() : String = {
+    val sb = new mutable.StringBuilder()
+
+    sb.append(files.getName() + "\nfiles: " + parserFiles.getAbsolutePath + "\nindex: " + indexFile.getAbsoluteFile
+    + "\nconfiguration:")
+    for(kv <- configMap){
+      sb.append("\n\t" + kv._1 +": " + kv._2);
+    }
+    sb.toString
+  }
+
 }

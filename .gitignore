@@ -2,6 +2,6 @@ target/*
 project/*
 .DS_Store
 *.iml
-src/test/resources/*
+src/test/resources/nypl/*
 .idea/*
 out/*
