@@ -1,22 +1,8 @@
-import AssemblyKeys._
-
-assemblySettings
-
 name := "GumshoeJr Solrizer"
 
 version := "0.0.1"
 
 scalaVersion := "2.10.2"
-
-jarName in assembly := "eri_solrizer.jar"
-
-mainClass in assembly := Some("org.nypl.mss.Launch")
-
-mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
-  {
-    case PathList("javax", "xml", "XMLConstants") => MergeStrategy.first
-  }
-}
 
 libraryDependencies ++= Seq(
 	"com.typesafe" % "config" % "1.0.0",
