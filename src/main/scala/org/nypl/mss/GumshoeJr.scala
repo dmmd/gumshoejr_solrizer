@@ -8,6 +8,14 @@ import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FilenameUtils
 import org.apache.solr.client.solrj.impl.HttpSolrServer
 
+object Launch{
+  def main(args: Array[String]) = {
+    println("GumshoeJr Solrizer v.0.0.1")
+    println("You passed: " + args(0))
+    val gs: GumshoeSolrizer = new GumshoeSolrizer(args(0))
+  }
+}
+
 class GumshoeSolrizer(packLoc: String){
   val pack: GumshoePackage = new GumshoePackage(packLoc)
   val fileHash = new mutable.HashMap[String, File]()
