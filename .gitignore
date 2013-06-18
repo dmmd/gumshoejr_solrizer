@@ -3,5 +3,5 @@ project/*
 .DS_Store
 *.iml
 src/test/resources/*
-idea/*
+.idea/*
 out/*
