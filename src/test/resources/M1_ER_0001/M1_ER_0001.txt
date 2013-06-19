@@ -1,7 +1,7 @@
-colId:  M1
-colName:    The Gumshoe Jr. Test records
-componentIdentifier:    M1_ER_0001
+colId: M1
+colName: The Gumshoe Jr. Test records
+componentIdentifier: M1_ER_0001
 componentTitle: Electronic Records
-parentComponentTitle:   Inventory
+parentComponentTitle: Inventory
 access: FALSE
-localIdentifier:    ER1
+localIdentifier: ER1

@@ -17,6 +17,7 @@ class FileProcessor(fileInfo : String, file: File, config: mutable.HashMap[Strin
     solrDoc.addField("colId", config("colId"))
     solrDoc.addField("colName", config("colName"))
     solrDoc.addField("componentIdentifier", config("componentIdentifier"))
+    solrDoc.addField("componentTitle", config("componentTitle"))
     solrDoc.addField("localIdentifier", config("localIdentifier"))
     solrDoc.addField("filename", info(1))
 
