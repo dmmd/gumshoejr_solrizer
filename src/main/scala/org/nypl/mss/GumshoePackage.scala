@@ -16,7 +16,7 @@ class GumshoePackage(packageLoc: String) {
       indexFile = file
     } else if(FilenameUtils.getExtension(file.getName) == "txt"){
       for(line <- Source.fromInputStream(new FileInputStream(file)).getLines()){
-        val kv = line.split(":\\s")
+        val kv = line.split(":\\s*")
         configMap += (kv(0) -> kv(1))
       }
     } else if(file.getName == "files" && file.isDirectory && file.listFiles.size > 1){

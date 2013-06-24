@@ -20,8 +20,7 @@ class FileProcessor(fileInfo : String, file: File, config: mutable.HashMap[Strin
     solrDoc.addField("componentTitle", config("componentTitle"))
     solrDoc.addField("localIdentifier", config("localIdentifier"))
     solrDoc.addField("filename", info(1))
-
-    //solrDoc.addField("accessFilename", fileHash(info(6).toLowerCase).toString())
+    if(!file.getName().eq(info(1))) solrDoc.addField("accessFilename", file.getName)
     solrDoc.addField("filePath", info(2));
     solrDoc.addField("fileType", info(3));
     solrDoc.addField("fileSize", info(4));

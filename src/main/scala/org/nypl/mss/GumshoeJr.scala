@@ -7,6 +7,7 @@ import scala.io.Source
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FilenameUtils
 import org.apache.solr.client.solrj.impl.HttpSolrServer
+import org.apache.solr.client.solrj.SolrServerException
 
 object Launch{
   def main(args: Array[String]) = {
@@ -23,20 +24,23 @@ class GumshoeSolrizer(packLoc: String){
   val conf = ConfigFactory.load()
   val solr : HttpSolrServer = new HttpSolrServer(conf.getString("solr.test"))
 
-  if(solr.ping().getStatus == 0){
-    println("Connected to Solr Server")
-    mapFiles()
-    if(pack.configMap("access").equals("TRUE")){mapAccessFiles}
-    parseInventory()
-    solr.commit
-    solr.optimize
-
-
-    } else {
-    println("Unable to connect to Solr server, exiting")
-    System.exit(1)
+  try{
+    solr.ping
   }
+  catch {
+    case ex: SolrServerException =>{
+      println("Could not connect to Solr server, exiting")
+      System.exit(1)
+    }
+  }
+  println("Connected to Solr Server")
+  mapFiles()
+  if(pack.configMap("access").equals("TRUE")){mapAccessFiles}
 
+  parseInventory()
+
+  solr.commit
+  solr.optimize
 
 
   def mapFiles() : Unit = {
